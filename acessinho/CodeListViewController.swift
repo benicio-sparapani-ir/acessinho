@@ -49,7 +49,7 @@ class CodeListViewController: UIViewController {
     }
     
     func addTicket(with ticketKey: String) {
-        let code = Code(readTime: "", key: ticketKey)
+        let code = Code(readTime: "", readUser: "", key: ticketKey)
         let codeItemRef = self.codesRef?.child(ticketKey)
         codeItemRef!.setValue(code.toAnyObject())
     }
@@ -60,11 +60,16 @@ class CodeListViewController: UIViewController {
     
     func updateReadDate(ticket: Code) {
         
-        let now = Date()
-        let nowString = self.dateFormatter.string(from: now)
-        ticket.ref?.updateChildValues(
-            ["read-date": nowString]
-        )
+        if let email = FIRAuth.auth()?.currentUser?.email {
+            let now = Date()
+            let nowString = self.dateFormatter.string(from: now)
+            ticket.ref?.updateChildValues(
+                [
+                    "read-date": nowString,
+                    "read-user": email
+                ]
+            )
+        }
     }
     
     //MARK: Settings

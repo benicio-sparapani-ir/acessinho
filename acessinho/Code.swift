@@ -13,11 +13,13 @@ struct Code {
     
     let key: String
     let readTime: String
+    let readUser: String
     let ref: FIRDatabaseReference?
     
-    init(readTime: String, key: String = "") {
+    init(readTime: String, readUser: String, key: String = "") {
         self.key = key
         self.readTime = readTime
+        self.readUser = readTime
         self.ref = nil
     }
     
@@ -25,12 +27,14 @@ struct Code {
         key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         readTime = snapshotValue["read-date"] as! String
+        readUser = snapshotValue["read-user"] as! String
         ref = snapshot.ref
     }
     
     func toAnyObject() -> Any {
         return [
-            "read-date": readTime
+            "read-date": readTime,
+            "read-user": readUser
         ]
     }
 }
