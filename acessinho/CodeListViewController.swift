@@ -15,7 +15,7 @@ class CodeListViewController: UIViewController {
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "pt-BR")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "yyyy/MM/dd - HH:mm:ss"
         return dateFormatter
     }()
     
@@ -59,8 +59,11 @@ class CodeListViewController: UIViewController {
     }
     
     func updateReadDate(ticket: Code) {
+        
+        let now = Date()
+        let nowString = self.dateFormatter.string(from: now)
         ticket.ref?.updateChildValues(
-            ["read-date": self.dateFormatter.string(from: Date())]
+            ["read-date": nowString]
         )
     }
     
