@@ -5,9 +5,11 @@ use_frameworks!
 inhibit_all_warnings!
 
 def common_pods
-  pod 'Firebase/Core'
-  pod 'Firebase/Messaging'
-  pod 'QRCodeReaderViewController', '~> 4.0.2'
+	pod 'AlamofireImage', '~> 3.1'
+	pod 'Firebase/Core'
+	pod 'Firebase/Database'
+	pod 'Firebase/Auth'
+  	pod 'QRCodeReaderViewController', '~> 4.0.2'
 end
 
 target 'acessinho' do
