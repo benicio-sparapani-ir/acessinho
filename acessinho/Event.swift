@@ -36,6 +36,5 @@ struct Event {
             "name": name,
             "image-url": imageUrl
         ]
-    }
-    
+    }    
 }

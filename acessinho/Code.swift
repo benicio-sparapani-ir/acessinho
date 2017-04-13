@@ -33,5 +33,4 @@ struct Code {
             "read-date": readTime
         ]
     }
-    
 }

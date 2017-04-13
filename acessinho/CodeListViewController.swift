@@ -83,7 +83,26 @@ class CodeListViewController: UIViewController {
     }
     
     @IBAction func addCode(_ sender: Any) {
+        let alert = UIAlertController(title: "Ingresso",
+                                      message: "Adicionar um código",
+                                      preferredStyle: .alert)
         
+        let saveAction = UIAlertAction(title: "Adicionar",
+                                       style: .default) { action in
+                                        let textField = alert.textFields![0]
+                                        let code = Code(readTime: "", key: textField.text!)
+                                        self.codes.append(code)
+                                        self.tableView.reloadData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar",
+                                         style: .default)
+        
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
