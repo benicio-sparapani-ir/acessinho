@@ -26,6 +26,10 @@ class CodeListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
     override func viewDidLoad() {
         let ref = FIRDatabase.database().reference(withPath: "codes")
         codesRef = ref.child(eventId!)
@@ -43,6 +47,24 @@ class CodeListViewController: UIViewController {
             self.tableView.reloadData()
         })
     }
+    
+    func addTicket(with ticketKey: String) {
+        let code = Code(readTime: "", key: ticketKey)
+        let codeItemRef = self.codesRef?.child(ticketKey)
+        codeItemRef!.setValue(code.toAnyObject())
+    }
+    
+    func removeTicket(ticket: Code) {
+        ticket.ref?.removeValue()
+    }
+    
+    func updateReadDate(ticket: Code) {
+        ticket.ref?.updateChildValues(
+            ["read-date": self.dateFormatter.string(from: Date())]
+        )
+    }
+    
+    //MARK: Settings
     
     @IBAction func readCodes(_ sender: Any) {
         let reader = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode])
@@ -65,9 +87,9 @@ class CodeListViewController: UIViewController {
                         
                         if code?.readTime == "" {
                             print("Authorized")
-                            code?.ref?.updateChildValues(["read-date": self.dateFormatter.string(from: Date())])
+                            self.updateReadDate(ticket: code!)
                         } else {
-                            print("Ticket is already checked")
+                            print("Ticket already validated")
                         }
                         
                     } else {
@@ -89,14 +111,8 @@ class CodeListViewController: UIViewController {
         
         let saveAction = UIAlertAction(title: "Adicionar",
                                        style: .default) { action in
-                                        let textField = alert.textFields![0]
-                                        let code = Code(readTime: "", key: textField.text!)
-                                        self.codes.append(code)
-                                        
-                                        let codeItemRef = self.codesRef?.child(textField.text!)
-                                        codeItemRef!.setValue(code.toAnyObject())
-                                        
-                                        self.tableView.reloadData()
+                                        let ticketKey = alert.textFields![0].text
+                                        self.addTicket(with: ticketKey!)
         }
         
         let cancelAction = UIAlertAction(title: "Cancelar",
@@ -128,7 +144,7 @@ extension CodeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let code = codes[indexPath.row]
-            code.ref?.removeValue()
+            self.removeTicket(ticket: code)
         }
     }
 }

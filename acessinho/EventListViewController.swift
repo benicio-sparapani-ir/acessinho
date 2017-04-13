@@ -34,6 +34,17 @@ class EventListViewController: UIViewController {
         })
     }
     
+    @IBAction func logOut(_ sender: Any) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            performSegue(withIdentifier: "SignInSignUpViewController", sender: nil)
+        } catch (let error) {
+            print(error)
+        }
+    }
+    
+    //MARK: Settings
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let indexPath = sender as? IndexPath
@@ -43,6 +54,10 @@ class EventListViewController: UIViewController {
             let vc = segue.destination as? CodeListViewController
             vc?.eventId = event.key
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
 }
 

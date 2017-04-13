@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5Mp-zx-32s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="B6l-dc-cPt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -85,10 +85,17 @@
                             <constraint firstItem="Pl2-U4-wrI" firstAttribute="top" secondItem="fGK-zT-eCY" secondAttribute="bottom" id="sKL-sy-IPS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Eventos" id="WDO-zE-05s"/>
+                    <navigationItem key="navigationItem" title="Eventos" id="WDO-zE-05s">
+                        <barButtonItem key="rightBarButtonItem" title="Sair" id="4C0-ZY-hvb">
+                            <connections>
+                                <action selector="logOut:" destination="3lZ-CH-IXE" id="zjG-4o-6jP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="fGK-zT-eCY" id="Yi6-Fu-eZX"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="CodeListViewController" id="jj8-qr-lwG"/>
+                        <segue destination="B6l-dc-cPt" kind="showDetail" identifier="SignInSignUpViewController" animates="NO" id="jhE-Xd-rzX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R01-M4-y7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -206,12 +213,81 @@
                     <view key="view" contentMode="scaleToFill" id="4KD-iJ-gwE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="2Ha-vq-lid">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acessinho" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTs-q0-wuF">
+                                <rect key="frame" x="72" y="120" width="231.5" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="9Hy-5d-5tl"/>
+                                    <constraint firstAttribute="width" constant="231.5" id="Rdc-to-8pO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="45"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gc9-f8-1Wr">
+                                <rect key="frame" x="68" y="497" width="239" height="42"/>
+                                <color key="backgroundColor" red="0.12156862745098039" green="0.71372549019607845" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="239" id="DQx-WF-J4i"/>
+                                    <constraint firstAttribute="height" constant="42" id="QgO-WM-Jl5"/>
+                                </constraints>
+                                <state key="normal" title="Cadastrar">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signUpTapped:" destination="B6l-dc-cPt" eventType="touchUpInside" id="2iV-Lm-JBx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuu-Ng-h1R">
+                                <rect key="frame" x="68" y="547" width="239" height="42"/>
+                                <color key="backgroundColor" white="0.94805230034722221" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="239" id="Ch1-5K-Ov7"/>
+                                    <constraint firstAttribute="height" constant="42" id="kE9-eY-zMQ"/>
+                                </constraints>
+                                <state key="normal" title="Entrar">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signInTapped:" destination="B6l-dc-cPt" eventType="touchUpInside" id="JWZ-eV-PAl"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wuu-Ng-h1R" firstAttribute="centerX" secondItem="4KD-iJ-gwE" secondAttribute="centerX" id="A8L-Ki-Dra"/>
+                            <constraint firstItem="Gc9-f8-1Wr" firstAttribute="centerY" secondItem="4KD-iJ-gwE" secondAttribute="centerY" constant="184.5" id="F9t-Od-Z4a"/>
+                            <constraint firstItem="Wuu-Ng-h1R" firstAttribute="centerY" secondItem="4KD-iJ-gwE" secondAttribute="centerY" constant="234.5" id="IwM-Mo-Wcd"/>
+                            <constraint firstItem="7bp-OX-lbo" firstAttribute="top" secondItem="2Ha-vq-lid" secondAttribute="bottom" id="PBH-F3-uIO"/>
+                            <constraint firstItem="2Ha-vq-lid" firstAttribute="top" secondItem="4KD-iJ-gwE" secondAttribute="top" id="TJa-MG-ZJS"/>
+                            <constraint firstItem="Gc9-f8-1Wr" firstAttribute="centerX" secondItem="4KD-iJ-gwE" secondAttribute="centerX" id="fx4-rt-Gi4"/>
+                            <constraint firstItem="2Ha-vq-lid" firstAttribute="leading" secondItem="4KD-iJ-gwE" secondAttribute="leading" id="kWs-7o-5WH"/>
+                            <constraint firstItem="TTs-q0-wuF" firstAttribute="centerY" secondItem="4KD-iJ-gwE" secondAttribute="centerY" constant="-186.5" id="nep-JP-qS8"/>
+                            <constraint firstAttribute="trailing" secondItem="2Ha-vq-lid" secondAttribute="trailing" id="ss7-QI-FdB"/>
+                            <constraint firstItem="TTs-q0-wuF" firstAttribute="centerX" secondItem="4KD-iJ-gwE" secondAttribute="centerX" id="xby-F9-lxg"/>
+                        </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <segue destination="5Mp-zx-32s" kind="showDetail" identifier="EventListViewController" animates="NO" id="Hlb-yr-zRb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgC-Lh-UVY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1038" y="36"/>
+            <point key="canvasLocation" x="-1039.2" y="35.532233883058474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q7d-wA-cxg">
@@ -230,4 +306,7 @@
             <point key="canvasLocation" x="-172" y="-682"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="960" height="960"/>
+    </resources>
 </document>

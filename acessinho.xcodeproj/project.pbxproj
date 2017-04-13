@@ -40,6 +40,7 @@
 		C9718FD91E9F677600658573 /* CodeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeListViewController.swift; sourceTree = "<group>"; };
 		C9718FDB1E9F71E200658573 /* CodeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeTableViewCell.swift; sourceTree = "<group>"; };
 		C9718FDD1E9F71FA00658573 /* Code.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
+		C9718FDF1E9FD1DD00658573 /* acessinho.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = acessinho.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 				C9718FC31E9F2C0F00658573 /* LaunchScreen.storyboard */,
 				C9718FC61E9F2C0F00658573 /* Info.plist */,
 				C9718FCC1E9F39FA00658573 /* GoogleService-Info.plist */,
+				C9718FDF1E9FD1DD00658573 /* acessinho.entitlements */,
 			);
 			path = acessinho;
 			sourceTree = "<group>";
@@ -170,6 +172,11 @@
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = Q5S3JGHHG9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
