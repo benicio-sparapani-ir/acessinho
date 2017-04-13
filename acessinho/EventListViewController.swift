@@ -17,9 +17,7 @@ class EventListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Eventos"
-
+    
         let ref = FIRDatabase.database().reference(withPath: "events")
         
         ref.observe(.value, with: { snapshot in
@@ -35,11 +33,22 @@ class EventListViewController: UIViewController {
             self.tableView.reloadData()
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let indexPath = sender as? IndexPath
+        
+        if let indexPath = indexPath, segue.identifier == "CodeListViewController" {
+            let event = events[indexPath.row]
+            let vc = segue.destination as? CodeListViewController
+            vc?.eventId = event.key
+        }
+    }
 }
 
 extension EventListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "CodeListViewController", sender: indexPath)
     }
 }
 
@@ -47,7 +56,6 @@ extension EventListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let event = events[indexPath.row]
-        print(event.key)
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell", for: indexPath) as? EventTableViewCell
         
         cell?.populate(with: event)

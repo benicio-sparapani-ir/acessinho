@@ -1,5 +1,5 @@
 //
-//  Event.swift
+//  Code.swift
 //  acessinho
 //
 //  Created by Benicio Sparapani Junior on 13/04/17.
@@ -9,32 +9,28 @@
 import Foundation
 import Firebase
 
-struct Event {
+struct Code {
     
     let key: String
-    let name: String
-    let imageUrl: String
+    let readTime: String
     let ref: FIRDatabaseReference?
     
-    init(name: String, imageUrl: String, key: String = "") {
+    init(readTime: String, key: String = "") {
         self.key = key
-        self.name = name
-        self.imageUrl = imageUrl
+        self.readTime = readTime
         self.ref = nil
     }
     
     init(snapshot: FIRDataSnapshot) {
         key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        name = snapshotValue["name"] as! String
-        imageUrl = snapshotValue["image-url"] as! String
+        readTime = snapshotValue["read-date"] as! String
         ref = snapshot.ref
     }
     
     func toAnyObject() -> Any {
         return [
-            "name": name,
-            "image-url": imageUrl
+            "read-date": readTime
         ]
     }
     
