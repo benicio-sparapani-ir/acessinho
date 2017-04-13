@@ -92,6 +92,10 @@ class CodeListViewController: UIViewController {
                                         let textField = alert.textFields![0]
                                         let code = Code(readTime: "", key: textField.text!)
                                         self.codes.append(code)
+                                        
+                                        let codeItemRef = self.codesRef?.child(textField.text!)
+                                        codeItemRef!.setValue(code.toAnyObject())
+                                        
                                         self.tableView.reloadData()
         }
         
@@ -119,6 +123,13 @@ extension CodeListViewController: QRCodeReaderDelegate {
 extension CodeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let code = codes[indexPath.row]
+            code.ref?.removeValue()
+        }
     }
 }
 
