@@ -103,7 +103,7 @@ class CodeListViewController: UIViewController {
                         }
                         
                     } else {
-                        AudioServicesPlaySystemSound (1100)
+                        AudioServicesPlaySystemSound (1006)
                         print("Not authorized")
                     }
                 }
