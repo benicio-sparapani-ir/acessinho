@@ -95,12 +95,15 @@ class CodeListViewController: UIViewController {
                         
                         if code?.readTime == "" {
                             print("Authorized")
+                            AudioServicesPlaySystemSound (1000)
                             self.updateReadDate(ticket: code!)
                         } else {
+                            AudioServicesPlaySystemSound (1006)
                             print("Ticket already validated")
                         }
                         
                     } else {
+                        AudioServicesPlaySystemSound (1100)
                         print("Not authorized")
                     }
                 }

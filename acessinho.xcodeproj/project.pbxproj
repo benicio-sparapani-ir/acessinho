@@ -398,6 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q5S3JGHHG9;
 				INFOPLIST_FILE = acessinho/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingressinhorapido.acessinho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,6 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q5S3JGHHG9;
 				INFOPLIST_FILE = acessinho/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingressinhorapido.acessinho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
